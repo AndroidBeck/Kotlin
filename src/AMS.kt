@@ -2,11 +2,15 @@ import java.time.MonthDay
 import java.util.*
 
 fun main(args: Array<String>) {
-    dayOfWeek()
+
+    println("${if (args[0].toInt() < 12) "Good Morning Kotlin" else "Good Night Kotlin"}")
+
+//    print("Yello, ${args[0]}")
+//    dayOfWeek()
 }
 
 fun dayOfWeek() {
-    print("What day is it today?")
+    println("What day is it today?")
     var cal = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
     var strDay: String = ""
     when(cal) {
