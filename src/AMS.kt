@@ -1,10 +1,13 @@
-import java.time.MonthDay
 import java.util.*
 
 fun main(args: Array<String>) {
 
     println("${if (args[0].toInt() < 12) "Good Morning Kotlin" else "Good Night Kotlin"}")
-    feedTheFish()
+//    feedTheFish()
+    println(fitMoreFish(10.0, listOf(3,3,3)))
+    println(fitMoreFish(8.0, listOf(2,2,2), hasDecorations = false))
+    println(fitMoreFish(9.0, listOf(1,1,3), 3))
+    println(fitMoreFish(10.0, listOf(), 7, true))
 }
 
 fun feedTheFish() {
@@ -20,7 +23,7 @@ fun fishFood(day: String): String {
         "Wednesday" -> "crabs"
         "Friday" -> "weed"
         "Saturday" -> "plankton"
-        else -> "Uncknown food"
+        else -> "Unknown food"
     }
 }
 
@@ -29,10 +32,18 @@ fun randomDay(): String {
     return week[Random().nextInt(7)]
 }
 
-fun dayOfWeek() {
-    println("What day is it today?")
-    var cal = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
-    var strDay: String = ""
+fun fitMoreFish(tankSize: Double,
+                currentFish: List<Int>,
+                fishSize: Int = 2,
+                hasDecorations: Boolean = true) : Boolean {
 
-    println("It's $strDay !")
+    return (tankSize * if (hasDecorations) 0.8 else 1.0) >= (currentFish.sum() + fishSize)
+
+//    var allFishSize : Int = 0
+//    for (fish in currentFish) {
+//        allFishSize += fish
+//    }
+//    var k = 1.0
+//    if (hasDecorations) k = 0.8
+//    return (tankSize * k >= allFishSize + fishSize)
 }
