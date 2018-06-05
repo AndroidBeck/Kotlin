@@ -1,11 +1,11 @@
 fun main(args: Array<String>) {
-    var fortune: String
-    for (i in 1..10) {
+
+    do {
         var day = getBirthday()
-        fortune = getFortune(day)
+        var fortune = getFortune(day)
         println("\nYour fortune for $day is: $fortune")
-        if (fortune.contains("Take it easy")) break;
     }
+    while (!fortune.contains("Take it easy"))
 }
 
 fun getFortune(birthday: Int): String {
