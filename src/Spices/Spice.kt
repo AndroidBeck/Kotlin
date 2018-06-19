@@ -1,36 +1,42 @@
 package Spices
 
 fun main(args: Array<String>) {
+    val curry = Curry("mild")
+    println("${curry.prepareSpice()}")
+    println("${curry.color}")
 
 }
 
-abstract class Spice ( val name: String, open val spiciness: String = "mild"){
+abstract class Spice (val name: String, val spiciness: String = "mild", color: SpiceColor):
+        SpiceColor by color {
 
-    val heat: Int
-        get() = when(spiciness) {
-            "mild" -> 1
-            "spicy" -> 2
-            "hot" -> 3
-            "very hot" -> 4
-            "super hot" -> 5
-            else -> 0
-        }
-
-    init {
-        println("Spice $name created. Heat = $heat")
-    }
-
-    override fun toString(): String {
-        return this.name
-    }
+    override fun toString(): String = this.name
 
     abstract fun prepareSpice()
 
 }
 
-class Curry(override val spiciness: String): Spice("Curry", spiciness) {
+interface Grinder {
+    fun grind()
+}
+
+interface SpiceColor {
+    val color: String
+}
+
+object YellowSpiceColor: SpiceColor {
+    override val color = "Yellow"
+}
+
+class Curry(spiciness: String, name: String = "Curry", color: SpiceColor = YellowSpiceColor):
+        Spice(name, spiciness, color), Grinder {
+
     override fun prepareSpice() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        grind()
+    }
+
+    override fun grind() {
+        println("Grinding")
     }
 
 }
