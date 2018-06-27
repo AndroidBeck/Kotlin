@@ -1,4 +1,14 @@
+const val MAX_BOOKS_BORROW = 3
+
+object Constants {
+    const val BASE_URL = "http://kotlin.org/books/"
+}
+
 open class Book(val title: String, val author:String, val year: Int) {
+
+    companion object {
+        const val BASE_URL = "http://mybookshelf.ru/books/"
+    }
 
     private var currentPage: Int = 1
 
@@ -13,6 +23,16 @@ open class Book(val title: String, val author:String, val year: Int) {
     fun getTitleAuthorAndYear(): Triple<String, String, Int> {
         return Triple( title, author, year)
     }
+
+    fun canBorrow(booksBorrowed: Int): Boolean {
+        return (booksBorrowed < MAX_BOOKS_BORROW )
+    }
+
+    fun printUrl() {
+        println(Constants.BASE_URL + title + ".html")
+        println(BASE_URL + title + ".html")
+    }
+
 }
 
 class eBook(val format: String = "text"): Book("","", 0) {
@@ -25,7 +45,7 @@ class eBook(val format: String = "text"): Book("","", 0) {
 }
 
 fun main(args: Array<String>) {
-    val book = Book("Sobaka Baskerviley", "A.Conan Doyle", 1895)
+    val book = Book("Sobaka_Baskerviley", "A_Conan_Doyle", 1895)
     println(book.getTitleAndAuthor())
     val titleAuthorYear = book.getTitleAuthorAndYear()
     println(titleAuthorYear)
@@ -42,5 +62,8 @@ fun main(args: Array<String>) {
     moreBooks.getOrPut("Street Food with Honey") {"Winnie the P."}
     moreBooks.getOrPut("Jungle Book") {"Kipling"}
     println(moreBooks)
+
+    println(book.canBorrow(2))
+    book.printUrl()
 
 }
