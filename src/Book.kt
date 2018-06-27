@@ -31,4 +31,16 @@ fun main(args: Array<String>) {
     println(titleAuthorYear)
     println("Here is your book ${titleAuthorYear.first} written by ${titleAuthorYear.second} " +
             "in ${titleAuthorYear.third}.")
+
+    val allBooks = setOf("Midsummer Dream", "Romeo & Jilette: best shaving for men", "Dont Shake your Spear, dude!",
+            "Hamlet")
+    val library: Map<Set<String>, String> = mapOf(allBooks to "Shakespear")
+    if (library.any {it.key.contains("Hamlet")} ) println("Hamlet is here")
+
+    val moreBooks: MutableMap<String, String> = mutableMapOf("Street paintings" to "Banksi")
+
+    moreBooks.getOrPut("Street Food with Honey") {"Winnie the P."}
+    moreBooks.getOrPut("Jungle Book") {"Kipling"}
+    println(moreBooks)
+
 }
