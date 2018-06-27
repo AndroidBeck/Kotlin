@@ -1,7 +1,7 @@
 package Aquarium
 
 const val rocks = 3
-val numner = 5
+val number = 5
 const val num = 5
 
 const val CONSTANT = "top-level constant"
