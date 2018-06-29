@@ -16,7 +16,12 @@ class LakeWater : WaterSupply(true) {
     }
 }
 
-class Aquarium<T>(val waterSupply: T)
+class Aquarium<T: WaterSupply>(val waterSupply: T) {
+    fun addWater() {
+        check(!waterSupply.needsProcessed) {"water supply needs processed"}
+        println("adding water from $waterSupply")
+    }
+}
 
 fun genericExample() {
     //val aquarium = Aquarium<TapWater>(TapWater())
@@ -24,5 +29,16 @@ fun genericExample() {
     val aquarium = Aquarium(TapWater())
     aquarium.waterSupply.addChemicalCleaners()
 
-    TODO("continue here")
+    //Can not pass String after we made T: WaterSupply. Cannot pass null either
+    //val aquarium2 = Aquarium("string")
+
+    println(aquarium.waterSupply)
+
+    val aquarium4 = Aquarium(LakeWater())
+    aquarium4.waterSupply.filter()
+    aquarium4.addWater()
+}
+
+fun main(args: Array<String>) {
+    genericExample()
 }
